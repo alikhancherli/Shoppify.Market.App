@@ -1,0 +1,25 @@
+{
+  "ApplicationOptions": {
+    "SiteTitle": "تست سایت",
+    "SiteDescription": "توضیحات سایت",
+    "JwtConfig": {
+      "SecretKey": "LongerThan-16Char-SecretKey",
+      "EncryptKey": "16-Char-Encrypt0",
+      "Issuer": "ShoppifyApp",
+      "Audience": "ShoppifyClient",
+      "NotBeforeMinutes": 0,
+      "ExpirationMinutes": 15
+    }
+  },
+  "GlobalResources": {
+    "ParentNotfound": "والدی یافت نشد",
+    "LengthExceeded": "طول رشته ({PropertyName}) باید بین ({MinLength}) و ({MaxLength}) کاراکتر باشد",
+    "LessThanMinLength": "کمترین طول رشته ({PropertyName}) ({MinLength}) کاراکتر است",
+    "RequiredField": "فیلد ({PropertyName}) الزامی است",
+    "ProductCategoryResources": {
+      "TitleName": "عنوان دسته بندی محصول",
+      "ImageName": "تصویر دسته بندی محصول",
+      "DescriptionName": "توضیحات دسته بندی محصول"
+    }
+  }
+}
