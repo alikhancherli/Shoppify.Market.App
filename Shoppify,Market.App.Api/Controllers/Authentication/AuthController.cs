@@ -2,13 +2,12 @@
 using Microsoft.AspNetCore.Mvc;
 using Shoppify.Market.App.Domain.Entites;
 using Shoppify.Market.App.Identity.JwtConfigs;
+using Shoppify.Market.App.Infrastructure.ResultConfiguration;
 using System.ComponentModel.DataAnnotations;
 
 namespace Shoppify.Market.App.Api.Controllers.Authentication
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class AuthController : ControllerBase
+    public class AuthController : ApiController
     {
         private readonly IJwtService _jwtService;
         private readonly UserManager<User> _userManager;

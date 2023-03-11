@@ -21,5 +21,9 @@
       "ImageName": "تصویر دسته بندی محصول",
       "DescriptionName": "توضیحات دسته بندی محصول"
     }
+  },
+  "LiteXOptons": {
+    "Directory": "C:/VFS/Root",
+    "EnableLogging": true
   }
 }

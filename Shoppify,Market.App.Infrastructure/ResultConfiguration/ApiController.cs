@@ -1,12 +1,16 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Shoppify.Market.App.Service.Handlers;
 
 namespace Shoppify.Market.App.Infrastructure.ResultConfiguration
 {
+    [Route("api/v{version:apiVersion}/[controller]")]
+    [ApiController]
+    [ApiVersion("1")]
     public class ApiController : ControllerBase
     {
         [NonAction]
-        public virtual IActionResult HandlerResultExcecution(AppHandlerResult appHandlerResult)
+        public virtual ApplicationApiResult<object> HandlerResultExcecution(AppHandlerResult appHandlerResult)
         {
             if (appHandlerResult.Succeeded)
             {
@@ -22,9 +26,9 @@ namespace Shoppify.Market.App.Infrastructure.ResultConfiguration
         }
 
         [NonAction]
-        public IActionResult Failed()
+        public ApplicationApiResult<object> Failed()
         {
-            return StatusCode(500);
+            return new ObjectResult(null) { StatusCode = StatusCodes.Status500InternalServerError };
         }
     }
 }

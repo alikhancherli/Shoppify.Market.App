@@ -1,14 +1,14 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Shoppify.Market.App.Identity;
 using Shoppify.Market.App.Infrastructure.ResultConfiguration;
 using Shoppify.Market.App.Service.Commands.ProductCategories;
 
-namespace Shoppify.Market.App.Api.Controllers.ProductCategories.Add
+namespace Shoppify.Market.App.Api.Controllers.V1.ProductCategories.Add
 {
-    [Authorize]
-    [Route("api/[controller]")]
-    [ApiController]
+    [Authorize(Policy = Policies.AdminAccess)]
+    [ApiVersion("2.0")]
     public class ProductCategoriesController : ApiController
     {
         private readonly IMediator _mediator;
@@ -28,7 +28,7 @@ namespace Shoppify.Market.App.Api.Controllers.ProductCategories.Add
         [HttpPost]
         [ProducesResponseType(typeof(ValidationErrorResult), StatusCodes.Status422UnprocessableEntity)]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<IActionResult> AddProductCategory(
+        public async Task<ApplicationApiResult> AddProductCategory(
             [FromBody] ProductCategoryRequest model,
             CancellationToken cancellationToken)
         {

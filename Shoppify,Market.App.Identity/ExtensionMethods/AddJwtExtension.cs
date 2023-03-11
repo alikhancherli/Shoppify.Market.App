@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using Shoppify.Market.App.Domain.Exceptions;
 using Shoppify.Market.App.Service.Options;
 using System.Text;
 
@@ -33,6 +30,25 @@ namespace Shoppify.Market.App.Identity.ExtensionMethods
                     ValidateAudience = true,
                     ValidAudience = applicationOptions.JwtConfig.Audience
                 };
+
+                opt.Events = new JwtBearerEvents()
+                {
+                    OnChallenge = ctx =>
+                    {
+                        if (ctx.AuthenticateFailure != null)
+                            throw new UnauthorizedAccessException("مشکلی در احرازهویت شما رخ داده است");
+
+                        throw new UnauthorizedAccessException("شما احرازهویت نشده اید");
+                    }
+                };
+            });
+        }
+
+        public static void AddCustomPolicies(this IServiceCollection services)
+        {
+            services.AddAuthorization(opt =>
+            {
+                opt.AddPolicy(Policies.AdminAccess, Policies.AdminPolicy());
             });
         }
     }

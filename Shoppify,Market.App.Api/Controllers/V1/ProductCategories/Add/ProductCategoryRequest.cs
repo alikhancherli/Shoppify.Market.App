@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Shoppify.Market.App.Api.Controllers.ProductCategories.Add
+namespace Shoppify.Market.App.Api.Controllers.V1.ProductCategories.Add
 {
     public class ProductCategoryRequest
     {

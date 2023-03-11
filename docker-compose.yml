@@ -1,0 +1,22 @@
+version: '3.9'
+services:
+    myapi:
+      build:
+        context: .
+        dockerfile: ./Dockerfile
+      ports:
+        - "5107:5107"
+        - "7107:7107"
+      volumes:
+        - ./Shoppify,Market.App.Api/appsettings.Development.json:/app/appsettings.json
+        - ./Shoppify,Market.App.Api/values.json:/app/values.json
+      depends_on:
+        - sqlserver
+      environment:
+        - ASPNETCORE_URLS=http://+:5107
+        - ASPNETCORE_HTTPS_PORT=https://+:7107
+    sqlserver:
+      image: mcr.microsoft.com/mssql/server:2019-latest
+      environment:
+            SA_PASSWORD: "@Li12345678"
+            ACCEPT_EULA: "Y"
